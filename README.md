@@ -4,7 +4,7 @@
 
 ====================================================================================
 ## Category: Scraper
-### FILE: [sid_mailscraper.py]
+### FILENAME: [sid_mailscraper.py]
 ### Current Version: v0.1
 ### Status: v0.1 completed.
 ### Author: imSiddis
@@ -18,3 +18,11 @@
 
 ====================================================================================
 
+## Category: 
+### FILENAME: []
+### Current Version:
+### Status: 
+### Author: imSiddis
+
+### Description:
+* 
