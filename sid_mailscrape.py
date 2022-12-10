@@ -34,21 +34,39 @@ def printEmails(emails):
 
 # A function to append the non-duplicate emails to a file.
 def saveEmails(emails):
-    with open("emails.txt", "a") as file:
+    with open("emails.txt", "a") as file: 
         for email in emails:
             file.write(email + "\n")
 
 # A menu function to allow the user to choose what they want to do with the emails
+# This menu should be called before the emails have been scraped and sorted.
+
 def menu(emails):
+    print("===================== MailScrape v1.0 ======================")
+    print("|                      By imSiddis                         |")
+    print("============================================================")
+    print("| This program will scrape email addresses from a website. |")
+    print("============================================================")
     print("What would you like to do with the emails?")
     print("1. Print emails to screen")
     print("2. Save emails to file")
     print("0. Exit")
     choice = input("Enter your choice: ")
     if choice == "1":
-        printEmails(emails)
+        url = getURL()
+        html = getHTML(url)
+        emails = getEmails(html)
+        no_duplicates = removeDuplicates(emails)
+        sorted_emails = sorted(no_duplicates)
+        printEmails(sorted_emails)
+        
     elif choice == "2":
-        saveEmails(emails)
+        url = getURL()
+        html = getHTML(url)
+        emails = getEmails(html)
+        no_duplicates = removeDuplicates(emails)
+        sorted_emails = sorted(no_duplicates)
+        saveEmails(sorted_emails)
     elif choice == "0":
         print("Exiting...")
         exit()
@@ -63,11 +81,21 @@ def main():
     print("============================================================")
     print("| This program will scrape email addresses from a website. |")
     print("============================================================")
+    # Main program
     url = getURL()
     html = getHTML(url)
     emails = getEmails(html)
     no_duplicates = removeDuplicates(emails)
     sorted_emails = sorted(no_duplicates)
-    printEmails(sorted_emails) 
+    menu(sorted_emails)
 
-main()
+    
+    
+    # url = getURL()
+    # html = getHTML(url)
+    # emails = getEmails(html)
+    # no_duplicates = removeDuplicates(emails)
+    # sorted_emails = sorted(no_duplicates)
+    # printEmails(sorted_emails) 
+
+menu(getURL)
