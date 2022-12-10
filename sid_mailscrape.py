@@ -51,15 +51,15 @@ def menu(emails):
         saveEmails(emails)
     elif choice == "0":
         print("Exiting...")
-        sys.exit()
+        exit()
     else:
         print("Invalid choice")
         menu(emails)
 
 def main():
     # Splash screen
-    print("================== MailScrape v1.0 ========================")
-    print("|                   By imSiddis                            |")
+    print("===================== MailScrape v1.0 ======================")
+    print("|                      By imSiddis                         |")
     print("============================================================")
     print("| This program will scrape email addresses from a website. |")
     print("============================================================")
