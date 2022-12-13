@@ -78,10 +78,13 @@ class Hash:
                 print(f"{hash}:{word}")
                 sys.exit()
 
-
-
-
-def about(): # About function
+    #===============================#
+    # Crack hash list with wordlist #
+    #===============================#
+    def crack_hash_list(): # This function should crack a list of hashes using a wordlist.
+        pass
+    
+def about():
     print("===================== HashCrack v1.0 ======================")
     print("                       By imSiddis")
     print("===========================================================")
@@ -117,9 +120,8 @@ def main():
         hash = Hash(hash)
         hash.crack()
     elif choice == "2":
-        print("This function is not yet implemented.")
+        Hash.crack_hash_list()
     elif choice == "3":
-        about()
         main()
     elif choice == "0":
         sys.exit()
