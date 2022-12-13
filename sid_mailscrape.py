@@ -1,6 +1,6 @@
 # This program should request a URL from the user, then scrape the email addresses from the page and print them to the screen.
 # Author: imSiddis
-
+import sys
 import re
 import urllib.request
 
@@ -12,6 +12,13 @@ def getURL():
         pass
     elif not url.startswith("http://") or not url.startswith("https://"): # This will check if the URL starts with http:// or https://
         url = "https://" + url # If it doesn't, it will add http:// to the start of the URL
+        
+    # Verify that url is valid
+    try:
+        urllib.request.urlopen(url)
+    except urllib.error.URLError as e:
+        print("Error: Invalid URL.")
+        sys.exit()
     return url
 
 def getHTML(url):
@@ -38,7 +45,7 @@ def removeDuplicates(emails):
 # A function that will remove emails not ending with TDL like .com, .net, .org, etc.
 def removeInvalidEmails(emails):
     # email_endwith = [Country TDLs]
-    email_endwith = [".no",".com",".uk",".to",".net",".gov",".org",".edu",".mil",".int",".arpa",".biz",".aero",".coop",".info",".name",".pro",".museum",".coop",".travel",".mobi",".cat",".jobs",".tel",".asia",".post",".xxx",".edu",".gov",".mil",".net",".org",".biz",".info",".name",".pro",".aero",".coop",".museum",".int",".travel",".post",".jobs",".mobi",".tel",".xxx",".ac",".ad",".ae",".af",".ag",".ai",".al",".am",".an",".ao",".aq",".ar",".as",".at",".au",".aw",".az",".ba",".bb",".bd",".be",".bf",".bg",".bh",".bi",".bj",".bm",".bn",".bo",".br",".bs",".bt",".bv",".bw",".by",".bz",".ca",".cc",".cd",".cf",".cg",".ch",".ci",".ck",".cl",".cm",".cn",".co",".cr",".cu",".cv",".cx",".cy",".cz",".de",".dj",".dk",".dm",".do",".dz",".ec",".ee",".eg",".eh",".er",".es",".et",".fi",".fj",".fk",".fm",".fo",".fr",".ga",".gb",".gd",".ge",".gf",".gg",".gh",".gi",".gl",".gm",".gn",".gp",".gq",".gr",".gs",".gt",".gu",".gw",".gy",".hk",".hm",".hn",".hr",".ht",".hu",".id",".ie",".il",".im",".in",".io",".iq",".ir",".is",".it",".je",".jm",".jo",".jp",".ke",".kg",".kh",".ki",".km",".kn",".kp",".kr",".kw",".ky",".kz","."]
+    email_endwith = [".no",".se",".com",".uk",".to",".net",".gov",".org",".edu",".mil",".int",".arpa",".biz",".aero",".coop",".info",".name",".pro",".museum",".coop",".travel",".mobi",".cat",".jobs",".tel",".asia",".post",".xxx",".edu",".gov",".mil",".net",".org",".biz",".info",".name",".pro",".aero",".coop",".museum",".int",".travel",".post",".jobs",".mobi",".tel",".xxx",".ac",".ad",".ae",".af",".ag",".ai",".al",".am",".an",".ao",".aq",".ar",".as",".at",".au",".aw",".az",".ba",".bb",".bd",".be",".bf",".bg",".bh",".bi",".bj",".bm",".bn",".bo",".br",".bs",".bt",".bv",".bw",".by",".bz",".ca",".cc",".cd",".cf",".cg",".ch",".ci",".ck",".cl",".cm",".cn",".co",".cr",".cu",".cv",".cx",".cy",".cz",".de",".dj",".dk",".dm",".do",".dz",".ec",".ee",".eg",".eh",".er",".es",".et",".fi",".fj",".fk",".fm",".fo",".fr",".ga",".gb",".gd",".ge",".gf",".gg",".gh",".gi",".gl",".gm",".gn",".gp",".gq",".gr",".gs",".gt",".gu",".gw",".gy",".hk",".hm",".hn",".hr",".ht",".hu",".id",".ie",".il",".im",".in",".io",".iq",".ir",".is",".it",".je",".jm",".jo",".jp",".ke",".kg",".kh",".ki",".km",".kn",".kp",".kr",".kw",".ky",".kz","."]
     valid_emails = [removeDuplicates(emails)]
     for email in emails:
         for i in email_endwith:
@@ -80,7 +87,7 @@ def about():
 # A menu function to allow the user to choose what they want to do with the emails
 # This menu should be called before the emails have been scraped and sorted.
 
-def menu(emails):
+def main(emails):
     print("===================== MailScrape v1.0 ======================")
     print("|                      By imSiddis                         |")
     print("============================================================")
@@ -100,7 +107,7 @@ def menu(emails):
         sorted_emails = sorted(no_duplicates)
         printEmails(sorted_emails)
         input("Press enter to return to the menu") # This will pause the program until the user presses enter
-        menu(emails)
+        main(emails)
         
     elif choice == "2":
         url = getURL()
@@ -114,27 +121,13 @@ def menu(emails):
         about()
         input("Press enter to return to the menu") # This will pause the program until the user presses enter
         print("\n\n\n\n\n\n")
-        menu(emails)
+        main(emails)
     elif choice == "0":
         confirmExit()
     else:
         print("Invalid choice")
-        menu(emails)
+        main(emails)
 
-# def main():
-#     # Splash screen
-#     print("===================== MailScrape v1.0 ======================")
-#     print("|                      By imSiddis                         |")
-#     print("============================================================")
-#     print("| This program will scrape email addresses from a website. |")
-#     print("============================================================")
-#     # Main program
-#     url = getURL()
-#     html = getHTML(url)
-#     emails = getEmails(html)
-#     no_duplicates = removeDuplicates(emails)
-#     sorted_emails = sorted(no_duplicates)
-#     menu(sorted_emails)
 
 # Confirm exit
 def confirmExit():
@@ -144,9 +137,9 @@ def confirmExit():
         print("Exiting...")
         exit()
     elif choice == "N" or choice == "n":
-        menu(emails=getURL)
+        main(emails=getURL)
     else:
         print("Invalid choice")
         confirmExit()
 
-menu(getURL)
+main(getURL)
