@@ -102,7 +102,7 @@ def about():
 def generate_wordlist(): # This function should generate a wordlist.
     print("This function is not yet implemented.")
 
-def main():
+def start():
     print("===================== HashCrack v1.0 ======================")
     print("|                      By imSiddis                       |")
     print("==========================================================")
@@ -122,8 +122,8 @@ def main():
     elif choice == "2":
         Hash.crack_hash_list()
     elif choice == "3":
-        main()
+        start()
     elif choice == "0":
         sys.exit()
 
-main()
+start()

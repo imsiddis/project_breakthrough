@@ -105,7 +105,7 @@ def about():
 # A menu function to allow the user to choose what they want to do with the emails
 # This menu should be called before the emails have been scraped and sorted.
 
-def main_menu(emails):
+def start(emails):
     print("===================== MailScrape v1.0 ======================")
     print("|                      By imSiddis                         |")
     print("============================================================")
@@ -125,7 +125,7 @@ def main_menu(emails):
         sorted_emails = sorted(no_duplicates)
         print_emails(sorted_emails)
         input("Press enter to return to the menu") # This will pause the program until the user presses enter
-        main_menu(emails)
+        start(emails)
         
     elif choice == "2":
         url = get_url()
@@ -139,12 +139,12 @@ def main_menu(emails):
         about()
         input("Press enter to return to the menu") # This will pause the program until the user presses enter
         print("\n\n\n\n\n\n")
-        main_menu(emails)
+        start(emails)
     elif choice == "0":
         confirm_exit()
     else:
         print("Invalid choice")
-        main_menu(emails)
+        start(emails)
 
 
 # Confirm exit
@@ -155,12 +155,7 @@ def confirm_exit():
         print("Exiting...")
         exit()
     elif choice == "N" or choice == "n":
-        main_menu(emails=get_url)
+        start(emails=get_url)
     else:
         print("Invalid choice")
         confirm_exit()
-
-main = main_menu(get_url)
-
-if __name__ == "__main__":
-    main()

@@ -2,10 +2,10 @@
 #=============================#
 # Import the required modules #
 #=============================#
-# import sid_hashcrack.py
-# import sid_mailscrape.py
-# import sid_dos.py
-# import sid_networkscanner.py
+# import sid_hashcrack
+import sid_mailscrape
+# import sid_dos
+# import sid_networkscanner
 
 #=============================#
 # Define the main function    #
@@ -23,20 +23,19 @@ def main():
     choice = input("Enter your choice: ")
     if choice == "1":
         pass
-        # hashcrack.main()
+        # sid_hashcrack.main()
     elif choice == "2":
-        pass
-        # mailscrape.main()
+        sid_mailscrape.start(emails=None)
     elif choice == "3":
         pass
-        # dos.main()
+        # sid_dos.main()
     elif choice == "4":
         pass
-        # networkscanner.main()
+        # sid_networkscanner.main()
+
     elif choice == "5":
-        pass
-        # about()
-        # input("Press enter to return to the menu")
+        about()
+        input("Press enter to return to the menu")
 
     elif choice == "0":
         # confirm_exit()
@@ -49,4 +48,11 @@ def main():
 # Define the about function   #
 #=============================#
 def about():
-    pass
+    print("======================= MailScrape v1.0 ========================")
+    print("This program is designed to be an exercise in Python programming.\nIt is a collection of programs that I have written to help me learn Python.\nThe chosen theme for this project are pentesting tools.")
+    print("=================================================================")
+    input("press enter to return to the menu")
+    main()
+
+if __name__ == '__main__':
+    main()
