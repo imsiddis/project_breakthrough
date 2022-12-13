@@ -39,7 +39,7 @@ def removeDuplicates(emails):
 def removeInvalidEmails(emails):
     # email_endwith = [Country TDLs]
     email_endwith = [".no",".com",".uk",".to",".net",".gov",".org",".edu",".mil",".int",".arpa",".biz",".aero",".coop",".info",".name",".pro",".museum",".coop",".travel",".mobi",".cat",".jobs",".tel",".asia",".post",".xxx",".edu",".gov",".mil",".net",".org",".biz",".info",".name",".pro",".aero",".coop",".museum",".int",".travel",".post",".jobs",".mobi",".tel",".xxx",".ac",".ad",".ae",".af",".ag",".ai",".al",".am",".an",".ao",".aq",".ar",".as",".at",".au",".aw",".az",".ba",".bb",".bd",".be",".bf",".bg",".bh",".bi",".bj",".bm",".bn",".bo",".br",".bs",".bt",".bv",".bw",".by",".bz",".ca",".cc",".cd",".cf",".cg",".ch",".ci",".ck",".cl",".cm",".cn",".co",".cr",".cu",".cv",".cx",".cy",".cz",".de",".dj",".dk",".dm",".do",".dz",".ec",".ee",".eg",".eh",".er",".es",".et",".fi",".fj",".fk",".fm",".fo",".fr",".ga",".gb",".gd",".ge",".gf",".gg",".gh",".gi",".gl",".gm",".gn",".gp",".gq",".gr",".gs",".gt",".gu",".gw",".gy",".hk",".hm",".hn",".hr",".ht",".hu",".id",".ie",".il",".im",".in",".io",".iq",".ir",".is",".it",".je",".jm",".jo",".jp",".ke",".kg",".kh",".ki",".km",".kn",".kp",".kr",".kw",".ky",".kz","."]
-    valid_emails = []
+    valid_emails = [removeDuplicates(emails)]
     for email in emails:
         for i in email_endwith:
             if email.endswith(i):
@@ -47,6 +47,8 @@ def removeInvalidEmails(emails):
     return valid_emails
 
 def printEmails(emails):
+    purged_emails = removeInvalidEmails(emails)
+    emails = purged_emails[1:]
     print("=========================================")
     print("|    ~~ Emails found on the page ~~     |")
     print("=========================================")
@@ -59,6 +61,8 @@ def printEmails(emails):
 
 # A function to append the non-duplicate emails to a file.
 def saveEmails(emails):
+    purged_emails = removeInvalidEmails(emails)
+    emails = purged_emails[1:]
     with open("emails.txt", "a") as file: 
         for email in emails:
             file.write(email + "\n")
