@@ -47,11 +47,14 @@ def removeInvalidEmails(emails):
     return valid_emails
 
 def printEmails(emails):
+    print("=========================================")
+    print("|    ~~ Emails found on the page ~~     |")
+    print("=========================================")
     for email in emails:
         print(email)
     print("=========================================")
-    print(" ~~ End of emails ~~")
-    print("Total emails found: " + str(len(emails)))
+    print("          ~~ End of emails ~~           ")
+    print("     \tTotal emails found: " + str(len(emails)))
     print("=========================================")
 
 # A function to append the non-duplicate emails to a file.
@@ -114,20 +117,20 @@ def menu(emails):
         print("Invalid choice")
         menu(emails)
 
-def main():
-    # Splash screen
-    print("===================== MailScrape v1.0 ======================")
-    print("|                      By imSiddis                         |")
-    print("============================================================")
-    print("| This program will scrape email addresses from a website. |")
-    print("============================================================")
-    # Main program
-    url = getURL()
-    html = getHTML(url)
-    emails = getEmails(html)
-    no_duplicates = removeDuplicates(emails)
-    sorted_emails = sorted(no_duplicates)
-    menu(sorted_emails)
+# def main():
+#     # Splash screen
+#     print("===================== MailScrape v1.0 ======================")
+#     print("|                      By imSiddis                         |")
+#     print("============================================================")
+#     print("| This program will scrape email addresses from a website. |")
+#     print("============================================================")
+#     # Main program
+#     url = getURL()
+#     html = getHTML(url)
+#     emails = getEmails(html)
+#     no_duplicates = removeDuplicates(emails)
+#     sorted_emails = sorted(no_duplicates)
+#     menu(sorted_emails)
 
 # Confirm exit
 def confirmExit():
