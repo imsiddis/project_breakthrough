@@ -6,27 +6,24 @@ import urllib.request
 
 
 
-def getURL():
+def get_url():
     url = input("Enter a URL: ")
-    if url.startswith("http://") or url.startswith("https://"):
-        pass
-    elif not url.startswith("http://") or not url.startswith("https://"): # This will check if the URL starts with http:// or https://
-        url = "https://" + url # If it doesn't, it will add https:// to the start of the URL
-        
-    # Verify that url is valid
-    try:
-        urllib.request.urlopen(url)
+    try: # This will check if the URL starts with http:// or https://
+        if url.startswith("http://") or url.startswith("https://"):
+            pass
+        elif not url.startswith("http://") or not url.startswith("https://"): # This will check if the URL starts with http:// or https://
+            url = "https://" + url # If it doesn't, it will add https:// to the start of the URL
     except urllib.error.URLError as e:
         print("Error: Invalid URL.")
         sys.exit()
     return url
 
-def getHTML(url):
+def get_html(url):
     req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36'}) # This will add a user-agent to the request
     html = urllib.request.urlopen(req).read() # This will read the HTML from the URL
     return html
 
-def getEmails(html):
+def get_emails(html):
     email_list = []
     emails = re.findall(r'[\w\.-]+@[\w\.-]+', str(html)) # This regex will find all email addresses on the page
     email_list.append(emails)
@@ -34,7 +31,7 @@ def getEmails(html):
 
 # This function removes duplicates from the list returned by getEmails()
 # It will use a set to remove duplicates, then convert the set back to a list
-def removeDuplicates(emails):
+def remove_duplicates(emails):
     email_list = []
     for email in emails:
         no_duplicates = list(set(email)) # This will remove duplicates from the list
@@ -43,7 +40,7 @@ def removeDuplicates(emails):
         return email_list # This will return the list without duplicates
 
 # A function that will remove emails not ending with TDL like .com, .net, .org, etc.
-def removeInvalidEmails(emails):
+def remove_invalid_emails(emails):
     # email_endwith = [Country TDLs]
     email_endwith = [".no",".se",".com",".uk",".to",".net",
                     ".gov",".org",".edu",".mil",".int",".arpa",
@@ -62,15 +59,15 @@ def removeInvalidEmails(emails):
                     ".hm",".hn",".hr",".ht",".hu",".id",".ie",".il",".im",".in",".io",".iq",".ir",
                     ".is",".it",".je",".jm",".jo",".jp",".ke",".kg",".kh",".ki",".km",".kn",".kp",
                     ".kr",".kw",".ky",".kz","."]
-    valid_emails = [removeDuplicates(emails)]
+    valid_emails = [remove_duplicates(emails)]
     for email in emails:
         for i in email_endwith:
             if email.endswith(i):
                 valid_emails.append(email)
     return valid_emails
 
-def printEmails(emails):
-    purged_emails = removeInvalidEmails(emails)
+def print_emails(emails):
+    purged_emails = remove_invalid_emails(emails)
     emails = purged_emails[1:]
     print("=========================================")
     print("|    ~~ Emails found on the page ~~     |")
@@ -83,8 +80,8 @@ def printEmails(emails):
     print("=========================================")
 
 # A function to append the non-duplicate emails to a file.
-def saveEmails(emails):
-    purged_emails = removeInvalidEmails(emails)
+def save_emails(emails):
+    purged_emails = remove_invalid_emails(emails)
     emails = purged_emails[1:]
     with open("emails.txt", "a") as file: 
         for email in emails:
@@ -108,7 +105,7 @@ def about():
 # A menu function to allow the user to choose what they want to do with the emails
 # This menu should be called before the emails have been scraped and sorted.
 
-def main(emails):
+def main_menu(emails):
     print("===================== MailScrape v1.0 ======================")
     print("|                      By imSiddis                         |")
     print("============================================================")
@@ -121,46 +118,49 @@ def main(emails):
     print("0. Exit")
     choice = input("Enter your choice: ")
     if choice == "1":
-        url = getURL()
-        html = getHTML(url)
-        emails = getEmails(html)
-        no_duplicates = removeDuplicates(emails)
+        url = get_url()
+        html = get_html(url)
+        emails = get_emails(html)
+        no_duplicates = remove_duplicates(emails)
         sorted_emails = sorted(no_duplicates)
-        printEmails(sorted_emails)
+        print_emails(sorted_emails)
         input("Press enter to return to the menu") # This will pause the program until the user presses enter
-        main(emails)
+        main_menu(emails)
         
     elif choice == "2":
-        url = getURL()
-        html = getHTML(url)
-        emails = getEmails(html)
-        no_duplicates = removeDuplicates(emails)
+        url = get_url()
+        html = get_html(url)
+        emails = get_emails(html)
+        no_duplicates = remove_duplicates(emails)
         sorted_emails = sorted(no_duplicates)
-        saveEmails(sorted_emails)
+        save_emails(sorted_emails)
     
     elif choice == "3":
         about()
         input("Press enter to return to the menu") # This will pause the program until the user presses enter
         print("\n\n\n\n\n\n")
-        main(emails)
+        main_menu(emails)
     elif choice == "0":
-        confirmExit()
+        confirm_exit()
     else:
         print("Invalid choice")
-        main(emails)
+        main_menu(emails)
 
 
 # Confirm exit
-def confirmExit():
+def confirm_exit():
     print("Are you sure you want to exit? (Y/n)") # Ask the user if they want to exit
     choice = input("Enter your choice: ")
     if choice == "Y" or choice == "y" or choice == "":
         print("Exiting...")
         exit()
     elif choice == "N" or choice == "n":
-        main(emails=getURL)
+        main_menu(emails=get_url)
     else:
         print("Invalid choice")
-        confirmExit()
+        confirm_exit()
 
-main(getURL)
+main = main_menu(get_url)
+
+if __name__ == "__main__":
+    main()
