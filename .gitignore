@@ -127,3 +127,5 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+wordlist.txt
+hashes.txt

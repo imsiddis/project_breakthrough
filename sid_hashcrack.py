@@ -46,7 +46,7 @@ class Hash:
             word = word.strip()
             hash_object = hashlib.md5(word.encode())
             if hash_object.hexdigest() == hash:
-                print("Password: " + word)
+                print(f"{hash}:{word}")
                 sys.exit()
         print("Password not found in wordlist.")
         sys.exit()
@@ -57,7 +57,7 @@ class Hash:
             word = word.strip()
             hash_object = hashlib.sha1(word.encode())
             if hash_object.hexdigest() == hash:
-                print("Password: " + word)
+                print(f"{hash}:{word}")
                 sys.exit()
 
     def crack_sha224(self, hash): # SHA224 hash cracking function
@@ -66,7 +66,7 @@ class Hash:
             word = word.strip()
             hash_object = hashlib.sha224(word.encode())
             if hash_object.hexdigest() == hash:
-                print("Password: " + word)
+                print(f"{hash}:{word}")
                 sys.exit()
 
     def crack_sha256(self, hash): # SHA256 hash cracking function
@@ -75,8 +75,11 @@ class Hash:
             word = word.strip()
             hash_object = hashlib.sha256(word.encode())
             if hash_object.hexdigest() == hash:
-                print("Password: " + word)
+                print(f"{hash}:{word}")
                 sys.exit()
+
+
+
 
 def about(): # About function
     print("===================== HashCrack v1.0 ======================")
@@ -96,7 +99,7 @@ def about(): # About function
 def generate_wordlist(): # This function should generate a wordlist.
     print("This function is not yet implemented.")
 
-def crack_menu():
+def main():
     print("===================== HashCrack v1.0 ======================")
     print("|                      By imSiddis                       |")
     print("==========================================================")
@@ -104,7 +107,8 @@ def crack_menu():
     print("==========================================================")
     print("What would you like to do?")
     print("1. Crack a hash")
-    print("2. Generate a wordlist (Coming soon!")
+    print("2. Crack a hashlist (Coming soon!")
+    print("3. Generate a wordlist (Coming soon!")
     print("3. About")
     print("0. Exit")
     choice = input("Enter your choice: ")
@@ -113,15 +117,11 @@ def crack_menu():
         hash = Hash(hash)
         hash.crack()
     elif choice == "2":
-        generate_wordlist()
+        print("This function is not yet implemented.")
     elif choice == "3":
         about()
-        crack_menu()
+        main()
     elif choice == "0":
         sys.exit()
 
-def main():
-    crack_menu()
-
-if __name__ == "__main__":
-    main()
+main()
