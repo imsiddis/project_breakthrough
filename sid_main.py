@@ -65,7 +65,7 @@ def confirm_exit():
         print("Exiting...")
         exit()
     elif choice == "N" or choice == "n":
-        start(emails=get_url)
+        sid_mailscrape.start(emails=get_url)
     else:
         print("Invalid choice")
         confirm_exit()
