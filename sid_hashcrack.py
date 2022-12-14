@@ -118,7 +118,7 @@ def start():
     print("2. Crack a hashlist (Coming soon!)")
     print("3. Generate a wordlist (Coming soon!)")
     print("3. About")
-    print("0. Exit")
+    print("0. Back")
     while True:
         choice = input("Enter your choice: ")
         if choice == "1":
@@ -130,5 +130,5 @@ def start():
         elif choice == "3":
             about()
         elif choice == "0":
-            os.system("cls")
+            sid_main.clear_screen()
             sid_main.main()
