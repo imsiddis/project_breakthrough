@@ -85,7 +85,7 @@ class Hash:
         pass
     
 def about():
-    print("===================== HashCrack v1.0 ======================")
+    print("====================| HashCrack v1.0 |=====================")
     print("                       By imSiddis")
     print("===========================================================")
     print("This program will crack a hash using a wordlist.")
@@ -103,7 +103,7 @@ def generate_wordlist(): # This function should generate a wordlist.
     print("This function is not yet implemented.")
 
 def start():
-    print("===================== HashCrack v1.0 ======================")
+    print("====================| HashCrack v1.0 |=====================")
     print("|                      By imSiddis                       |")
     print("==========================================================")
     print("| This program will crack a hash using a wordlist.       |")
