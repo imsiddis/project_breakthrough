@@ -5,6 +5,7 @@ import re
 import urllib.request
 
 
+build_num = 0.1
 
 def get_url():
     url = input("Enter a URL: ")
@@ -94,7 +95,7 @@ def save_emails(emails):
 
 # This function will print the program's information
 def about():
-    print("===================== MailScrape v1.0 ======================")
+    print(f"===================== MailScrape v{build_num} ======================")
     print("|                      by imSiddis.                        |")
     print("============================================================")
     print("| This program will scrape email addresses from a website. |")
@@ -106,7 +107,7 @@ def about():
 # This menu should be called before the emails have been scraped and sorted.
 
 def start(emails):
-    print("===================== MailScrape v1.0 ======================")
+    print(f"===================== MailScrape v{build_num} ======================")
     print("|                      By imSiddis                         |")
     print("============================================================")
     print("| This program will scrape email addresses from a website. |")
