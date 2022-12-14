@@ -4,6 +4,7 @@
 #=============================#
 import sid_hashcrack
 import sid_mailscrape
+import sid_pyscan
 import os
 # import sid_dos
 # import sid_networkscanner
@@ -31,8 +32,7 @@ def main():
         pass
         # sid_dos.main()
     elif choice == "4":
-        pass
-        # sid_networkscanner.main()
+        sid_pyscan.start()
 
     elif choice == "5":
         about()
