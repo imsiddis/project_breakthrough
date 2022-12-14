@@ -46,7 +46,7 @@ def remove_invalid_emails(emails):
                     ".gov",".org",".edu",".mil",".int",".arpa",
                     ".biz",".aero",".coop",".info",".name",".pro",
                     ".museum",".coop",".travel",".mobi",".cat",".jobs",
-                    ".tel",".asia",".post",".xxx",".edu",".gov",".mil",".net",
+                    ".tel",".asia",".post",".edu",".mil",".net",
                     ".org",".biz",".info",".name",".pro",".aero",".coop",".museum",
                     ".int",".travel",".post",".jobs",".mobi",".tel",".xxx",".ac",".ad",
                     ".ae",".af",".ag",".ai",".al",".am",".an",".ao",".aq",".ar",".as",".at",".au",
