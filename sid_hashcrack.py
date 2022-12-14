@@ -101,7 +101,7 @@ def about():
     print("This program is licensed under the GNU General Public License v3.0")
     # Press enter to return to the main menu
     input("Press enter to return to the main menu.")
-    print("\n\n\n\n\n\n")
+    start()
 
 def generate_wordlist(): # This function should generate a wordlist.
     print("This function is not yet implemented.")

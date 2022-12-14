@@ -56,7 +56,7 @@ def about():
     main()
 
 #==============#
-# Confirm Quit #
+# Confirm Exit #
 #==============#
 def confirm_exit():
     print("Are you sure you want to exit? (Y/n)") # Ask the user if they want to exit
