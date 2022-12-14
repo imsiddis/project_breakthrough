@@ -19,7 +19,7 @@ build_num = 0.1
 def get_ip():
     while True:
         try:
-            print("")
+            print("Type 'q' to quit.")
             ip = input("Enter an IP address: ")
             if "/" in ip:
                 return ip

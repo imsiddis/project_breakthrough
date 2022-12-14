@@ -9,13 +9,18 @@ import os
 # import sid_dos
 # import sid_networkscanner
 
+#========================#
+# Build Version variable #
+#========================#
+build_ver = 0.1
+
 #=============================#
 # Define the main function    #
 #=============================#
 def main():
     clear_screen()
     print("=========================================")
-    print("|     imSiddis PenTest Toolbox v1.0     |")
+    print(f"|     imSiddis PenTest Toolbox v{build_ver}     |")
     print("=========================================")
     print("1. HashCrack")
     print("2. MailScrape")
@@ -49,7 +54,7 @@ def main():
 #=============================#
 def about():
     clear_screen()
-    print("======================= MailScrape v1.0 ========================")
+    print(f"======================= MailScrape v{build_ver} ========================")
     print("This program is designed to be an exercise in Python programming.\nIt is a collection of programs that I have written to help me learn Python.\nThe chosen theme for this project are pentesting tools.")
     print("=================================================================")
     input("Press enter to return to the menu")
