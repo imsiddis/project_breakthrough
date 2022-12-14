@@ -8,7 +8,8 @@
 
 import hashlib
 import sys
-
+import sid_main
+import os
 build_num = "0.1"
 
 class Hash:
@@ -87,6 +88,7 @@ class Hash:
         pass
     
 def about():
+    sid_main.clear_screen()
     print(f"====================| HashCrack v{build_num} |=====================")
     print("                       By imSiddis")
     print("===========================================================")
@@ -105,6 +107,7 @@ def generate_wordlist(): # This function should generate a wordlist.
     print("This function is not yet implemented.")
 
 def start():
+    sid_main.clear_screen()
     print(f"====================| HashCrack v{build_num} |=====================")
     print("|                      By imSiddis                       |")
     print("==========================================================")
@@ -116,16 +119,16 @@ def start():
     print("3. Generate a wordlist (Coming soon!)")
     print("3. About")
     print("0. Exit")
-    choice = input("Enter your choice: ")
-    if choice == "1":
-        hash = input("Enter the hash: ")
-        hash = Hash(hash)
-        hash.crack()
-    elif choice == "2":
-        Hash.crack_hash_list()
-    elif choice == "3":
-        start()
-    elif choice == "0":
-        sys.exit()
-
-start()
+    while True:
+        choice = input("Enter your choice: ")
+        if choice == "1":
+            hash = input("Enter the hash: ")
+            hash = Hash(hash)
+            hash.crack()
+        elif choice == "2":
+            Hash.crack_hash_list()
+        elif choice == "3":
+            about()
+        elif choice == "0":
+            os.system("cls")
+            sid_main.main()

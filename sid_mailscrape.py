@@ -3,6 +3,7 @@
 import sys
 import re
 import urllib.request
+import sid_main
 
 
 build_num = 0.1
@@ -68,6 +69,7 @@ def remove_invalid_emails(emails):
     return valid_emails
 
 def print_emails(emails):
+    sid_main.clear_screen()
     purged_emails = remove_invalid_emails(emails)
     emails = purged_emails[1:]
     print("=========================================")
@@ -91,11 +93,14 @@ def save_emails(emails):
     print("          ~~ Emails Scraped ~~           ")
     print("     \tTotal emails saved: " + str(len(emails)))
     print("=========================================")
+    input("Press Enter to return to menu.")
+    start()
     
 
 # This function will print the program's information
 def about():
-    print(f"===================== MailScrape v{build_num} ======================")
+    sid_main.clear_screen()
+    print(f"====================| MailScrape v{build_num} |=====================")
     print("|                      by imSiddis.                        |")
     print("============================================================")
     print("| This program will scrape email addresses from a website. |")
@@ -107,7 +112,8 @@ def about():
 # This menu should be called before the emails have been scraped and sorted.
 
 def start(emails):
-    print(f"===================== MailScrape v{build_num} ======================")
+    sid_main.clear_screen()
+    print(f"====================| MailScrape v{build_num} |=====================")
     print("|                      By imSiddis                         |")
     print("============================================================")
     print("| This program will scrape email addresses from a website. |")
@@ -116,7 +122,7 @@ def start(emails):
     print("1. Print emails to screen")
     print("2. Save emails to file")
     print("3. About")
-    print("0. Exit")
+    print("0. Main Menu")
     choice = input("Enter your choice: ")
     if choice == "1":
         url = get_url()
@@ -154,7 +160,7 @@ def confirm_exit():
     choice = input("Enter your choice: ")
     if choice == "Y" or choice == "y" or choice == "":
         print("Exiting...")
-        exit()
+        sid_main.main()
     elif choice == "N" or choice == "n":
         start(emails=get_url)
     else:
