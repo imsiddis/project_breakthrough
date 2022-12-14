@@ -52,7 +52,7 @@ def about():
     print("======================= MailScrape v1.0 ========================")
     print("This program is designed to be an exercise in Python programming.\nIt is a collection of programs that I have written to help me learn Python.\nThe chosen theme for this project are pentesting tools.")
     print("=================================================================")
-    input("press enter to return to the menu")
+    input("Press enter to return to the menu")
     main()
 
 #==============#

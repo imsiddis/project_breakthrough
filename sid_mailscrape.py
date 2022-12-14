@@ -94,7 +94,7 @@ def save_emails(emails):
     print("     \tTotal emails saved: " + str(len(emails)))
     print("=========================================")
     input("Press Enter to return to menu.")
-    start()
+    sid_main.main()
     
 
 # This function will print the program's information
@@ -122,7 +122,7 @@ def start(emails):
     print("1. Print emails to screen")
     print("2. Save emails to file")
     print("3. About")
-    print("0. Main Menu")
+    print("0. Back")
     choice = input("Enter your choice: ")
     if choice == "1":
         url = get_url()
