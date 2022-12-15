@@ -8,6 +8,9 @@
 
 import hashlib
 import sys
+import sid_main
+import os
+build_num = "0.1"
 
 class Hash:
     def __init__(self, hash):
@@ -85,7 +88,8 @@ class Hash:
         pass
     
 def about():
-    print("===================== HashCrack v1.0 ======================")
+    sid_main.clear_screen()
+    print(f"====================| HashCrack v{build_num} |=====================")
     print("                       By imSiddis")
     print("===========================================================")
     print("This program will crack a hash using a wordlist.")
@@ -97,13 +101,14 @@ def about():
     print("This program is licensed under the GNU General Public License v3.0")
     # Press enter to return to the main menu
     input("Press enter to return to the main menu.")
-    print("\n\n\n\n\n\n")
+    start()
 
 def generate_wordlist(): # This function should generate a wordlist.
     print("This function is not yet implemented.")
 
 def start():
-    print("===================== HashCrack v1.0 ======================")
+    sid_main.clear_screen()
+    print(f"====================| HashCrack v{build_num} |=====================")
     print("|                      By imSiddis                       |")
     print("==========================================================")
     print("| This program will crack a hash using a wordlist.       |")
@@ -113,17 +118,17 @@ def start():
     print("2. Crack a hashlist (Coming soon!)")
     print("3. Generate a wordlist (Coming soon!)")
     print("3. About")
-    print("0. Exit")
-    choice = input("Enter your choice: ")
-    if choice == "1":
-        hash = input("Enter the hash: ")
-        hash = Hash(hash)
-        hash.crack()
-    elif choice == "2":
-        Hash.crack_hash_list()
-    elif choice == "3":
-        start()
-    elif choice == "0":
-        sys.exit()
-
-start()
+    print("0. Back")
+    while True:
+        choice = input("Enter your choice: ")
+        if choice == "1":
+            hash = input("Enter the hash: ")
+            hash = Hash(hash)
+            hash.crack()
+        elif choice == "2":
+            Hash.crack_hash_list()
+        elif choice == "3":
+            about()
+        elif choice == "0":
+            sid_main.clear_screen()
+            sid_main.main()

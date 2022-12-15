@@ -2,17 +2,25 @@
 #=============================#
 # Import the required modules #
 #=============================#
-# import sid_hashcrack
+import sid_hashcrack
 import sid_mailscrape
+import sid_pyscan
+import os
 # import sid_dos
 # import sid_networkscanner
+
+#========================#
+# Build Version variable #
+#========================#
+build_ver = 0.1
 
 #=============================#
 # Define the main function    #
 #=============================#
 def main():
+    clear_screen()
     print("=========================================")
-    print("|     imSiddis PenTest Toolbox v1.0     |")
+    print(f"|     imSiddis PenTest Toolbox v{build_ver}     |")
     print("=========================================")
     print("1. HashCrack")
     print("2. MailScrape")
@@ -22,24 +30,21 @@ def main():
     print("0. Exit")
     choice = input("Enter your choice: ")
     if choice == "1":
-        pass
-        # sid_hashcrack.main()
+        sid_hashcrack.start()
     elif choice == "2":
         sid_mailscrape.start(emails=None)
     elif choice == "3":
         pass
         # sid_dos.main()
     elif choice == "4":
-        pass
-        # sid_networkscanner.main()
+        sid_pyscan.start()
 
     elif choice == "5":
         about()
         input("Press enter to return to the menu")
 
     elif choice == "0":
-        # confirm_exit()
-        pass
+        confirm_exit()
     else:
         print("Invalid choice")
         main()
@@ -48,11 +53,36 @@ def main():
 # Define the about function   #
 #=============================#
 def about():
-    print("======================= MailScrape v1.0 ========================")
+    clear_screen()
+    print(f"======================= MailScrape v{build_ver} ========================")
     print("This program is designed to be an exercise in Python programming.\nIt is a collection of programs that I have written to help me learn Python.\nThe chosen theme for this project are pentesting tools.")
     print("=================================================================")
-    input("press enter to return to the menu")
+    input("Press enter to return to the menu")
     main()
+
+#==============#
+# Confirm Exit #
+#==============#
+def confirm_exit():
+    print("Are you sure you want to exit? (Y/n)") # Ask the user if they want to exit
+    choice = input("Enter your choice: ")
+    if choice == "Y" or choice == "y" or choice == "":
+        print("Exiting...")
+        exit()
+    elif choice == "N" or choice == "n":
+        main()
+    else:
+        print("Invalid choice")
+        confirm_exit()
+
+#==============#
+# Clear Screen #
+#==============#
+def clear_screen():
+    try:
+        os.system("cls")
+    except:
+        os.system("clear")
 
 if __name__ == '__main__':
     main()
