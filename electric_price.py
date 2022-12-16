@@ -71,7 +71,7 @@ def sørlandet():
         input()
         sørlandet()
     elif valg == "4":
-        get_max = get_price("span","em18")
+        get_max = get_price("td","r red")
         print(f"Maksimumsprisen i dag er {get_max} øre/kWh")
         print("Trykk enter for å fortsette...")
         input()
@@ -84,7 +84,8 @@ def sørlandet():
         get_now = get_price("span","em24 i")
         get_avg = get_price("span","em24")
         get_min = get_price("span","em18")
-        get_max = get_price("span","em18")
+        # get_max should look for the next span element with the class "em18" after the first one.
+        get_max = get_price("td","r red")
         print("#=========================================#")
         print("#               Full oversikt             #")
         print("#=========================================#")
@@ -115,13 +116,8 @@ def menu_banner():
     print("#======================================#")
     print("#        ~~ Strømpris Meny ~~          #")
     print("#======================================#")
-    print("# 1. Sørlandet                         #")
-    print("# 2. Vestlandet (Kommer snart)         #")
-    print("# 3. Trøndelag (Kommer snart)          #")
-    print("# 4. Nord-Norge (Kommer snart)         #")
-    print("# 5. Midt-Norge (Kommer snart)         #")
-    print("# 6. Østlandet (Kommer snart)          #")
-    print("# 7. Om programmet                     #")
+    print("# 1. Sjekk Strømpris                   #")
+    print("# 2. Om programmet                     #")
     print("# 0. Avslutt                           #")
     print("#======================================#")
 
@@ -132,7 +128,8 @@ def about():
     print("#=============================================================#")
     print("# Dette programmet er laget av imSiddis                       #")
     print("# Programmet er laget for å sjekke strømprisen i ditt område. #")
-    print("# Data er hentet fra: https://minspotpris.no/                 #")
+    print("# Data hentes fra: https://minspotpris.no/                    #")
+    print("# Strømprisen vil variere fra hvor din IP address kommer fra. #")
     print("#=============================================================#")
     print("~ Trykk enter for å fortsette... ~")
     input()
@@ -145,16 +142,6 @@ def electric_menu():
         print("Sørlandet")
         sørlandet()
     elif menu_choice == "2":
-        print("Vestlandet")
-    elif menu_choice == "3":
-        print("Trøndelag")
-    elif menu_choice == "4":
-        print("Nord-Norge")
-    elif menu_choice == "5":
-        print("Midt-Norge")
-    elif menu_choice == "6":
-        print("Østlandet")
-    elif menu_choice == "7":
         about()
     elif menu_choice == "0":
         confirm_exit()
