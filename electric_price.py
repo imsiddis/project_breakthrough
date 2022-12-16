@@ -1,15 +1,5 @@
 # This program will check what the current price of electricity is in your area. (Norway Only)
-#=======================================================#
-# Target:                                               #
-# https://www.lyse.no/strom/strompriser?postnummer=4009 #
-#=======================================================#
-
-#==========================================#
-# New target:                              #
-# https://polarkraft.no/dagens-timepriser/ #
-#==========================================#
-
-
+# This program is made by: imSiddis
 #==============================#
 # Import the necessary modules #
 #==============================#
