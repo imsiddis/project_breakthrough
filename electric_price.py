@@ -32,6 +32,6 @@ def main():
     # Get the price of electricity.
     price = get_price(postnummer)
     # Print the price of electricity.
-    print(get_price(postnummer))
+    print(price)
 
 main()
