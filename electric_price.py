@@ -16,6 +16,7 @@
 import requests
 import bs4
 import os
+import datetime
 
 
 # Get the electricity price from "https://www.lyse.no/strom/strompriser?postnummer=4009"
@@ -77,6 +78,9 @@ def sørlandet():
         sørlandet()
     elif valg == "5":
         clear_screen()
+        # Date should be formatted like this: DD/MM/YYYY
+        date = datetime.datetime.now()
+        date = date.strftime("%d/%m/%Y")
         get_now = get_price("span","em24 i")
         get_avg = get_price("span","em24")
         get_min = get_price("span","em18")
@@ -84,11 +88,13 @@ def sørlandet():
         print("#=========================================#")
         print("#               Full oversikt             #")
         print("#=========================================#")
+        print(f"# Dato: {date}")
         print(f"# Prisen nå er {get_now} øre/kWh")
         print(f"# Snittprisen i dag er {get_avg} øre/kWh")
         print(f"# Minimumsprisen i dag er {get_min} øre/kWh")
         print(f"# Maksimumsprisen i dag er {get_max} øre/kWh")
         print("#=========================================#")
+        print("")
         print("Trykk enter for å fortsette...")
         input()
         sørlandet()
