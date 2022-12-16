@@ -47,6 +47,7 @@ def sørlandet():
     print("# 2. Snittpris i dag      #")
     print("# 3. Minimumspris i dag   #")
     print("# 4. Maksimumspris i dag  #")
+    print("# 5. Full oversikt        #")
     print("# 0. Tilbake              #")
     print("#=========================#")
     valg = input("Valg: ")
@@ -74,6 +75,24 @@ def sørlandet():
         print("Trykk enter for å fortsette...")
         input()
         sørlandet()
+    elif valg == "5":
+        clear_screen()
+        get_now = get_price("span","em24 i")
+        get_avg = get_price("span","em24")
+        get_min = get_price("span","em18")
+        get_max = get_price("span","em18")
+        print("#=========================================#")
+        print("#               Full oversikt             #")
+        print("#=========================================#")
+        print(f"# Prisen nå er {get_now} øre/kWh")
+        print(f"# Snittprisen i dag er {get_avg} øre/kWh")
+        print(f"# Minimumsprisen i dag er {get_min} øre/kWh")
+        print(f"# Maksimumsprisen i dag er {get_max} øre/kWh")
+        print("#=========================================#")
+        print("Trykk enter for å fortsette...")
+        input()
+        sørlandet()
+        
     elif valg == "0":
         electric_menu()
         sørlandet()
@@ -96,8 +115,22 @@ def menu_banner():
     print("# 4. Nord-Norge (Kommer snart)         #")
     print("# 5. Midt-Norge (Kommer snart)         #")
     print("# 6. Østlandet (Kommer snart)          #")
+    print("# 7. Om programmet                     #")
     print("# 0. Avslutt                           #")
     print("#======================================#")
+
+def about():
+    clear_screen()
+    print("#=============================================================#")
+    print("# Strømpris v1.0 (Beta) (c) 2021 imSiddis                     #")
+    print("#=============================================================#")
+    print("# Dette programmet er laget av imSiddis                       #")
+    print("# Programmet er laget for å sjekke strømprisen i ditt område. #")
+    print("# Data er hentet fra: https://minspotpris.no/                 #")
+    print("#=============================================================#")
+    print("~ Trykk enter for å fortsette... ~")
+    input()
+    electric_menu()
 
 def electric_menu():
     menu_banner() # Print the menu banner
@@ -115,11 +148,22 @@ def electric_menu():
         print("Midt-Norge")
     elif menu_choice == "6":
         print("Østlandet")
+    elif menu_choice == "7":
+        about()
     elif menu_choice == "0":
-        print("Avslutter...")
-        exit()
+        confirm_exit()
     else:
         print("Ugyldig valg!")
+        electric_menu()
+
+def confirm_exit():
+    clear_screen()
+    print("Er du sikker på at du vil avslutte? (Y/n)")
+    confirm = input("Valg: ")
+    if confirm == "Y" or confirm == "y" or confirm == "":
+        print("Avslutter...")
+        exit()
+    elif confirm == "N" or confirm == "n":
         electric_menu()
 
 def clear_screen():
