@@ -17,7 +17,12 @@ import requests
 import bs4
 import os
 import datetime
+import time
 
+#=======================#
+# Build version of code #
+#=======================#
+build_version = "0.5 (Beta)"
 
 # Get the electricity price from "https://www.lyse.no/strom/strompriser?postnummer=4009"
 
@@ -35,10 +40,17 @@ def get_price(t1, t2):
     return price
 
 ##############################################
-
-#===========#
-# Sørlandet #
-# ==========# 
+#===============================================#
+# Date should be formatted like this: DD/MM/YYYY
+date = datetime.datetime.now()
+date = date.strftime("%d/%m/%Y")
+# Clock should be formatted like this: HH:MM:SS #
+clock = datetime.datetime.now()
+clock = clock.strftime("%H:%M:%S")
+#===============================================#
+#============#
+# Vestlandet # 
+#============# 
 def vestland():
     clear_screen()
     print("#========================#")
@@ -54,43 +66,42 @@ def vestland():
     print("#========================#")
     valg = input("Valg: ")
     if valg == "1":
+        loading()
         get_now = get_price("span","em24 i")
         print(f"Prisen nå er {get_now} øre/kWh")
         print("Trykk enter for å fortsette...")
         input()
         vestland()
     elif valg == "2":
+        loading()
         get_avg = get_price("span","em24")
         print(f"Snittprisen i dag er {get_avg} øre/kWh")
         print("Trykk enter for å fortsette...")
         input()
         vestland()
     elif valg == "3":
+        loading()
         get_min = get_price("span","em18")
         print(f"Minimumsprisen i dag er {get_min} øre/kWh")
         print("Trykk enter for å fortsette...")
         input()
         vestland()
     elif valg == "4":
+        loading()
         get_max = get_price("td","r red")
         print(f"Maksimumsprisen i dag er {get_max} øre/kWh")
         print("Trykk enter for å fortsette...")
         input()
         vestland()
     elif valg == "5":
-        #===============================================#
-        # Date should be formatted like this: DD/MM/YYYY
-        date = datetime.datetime.now()
-        date = date.strftime("%d/%m/%Y")
-        # Clock should be formatted like this: HH:MM:SS #
-        clock = datetime.datetime.now()
-        clock = clock.strftime("%H:%M:%S")
-        #===============================================#
         get_now = get_price("span","em24 i")
         get_avg = get_price("span","em24")
+        loading()
         get_min = get_price("span","em18")
+
         # get_max should look for the next span element with the class "em18" after the first one.
         get_max = get_price("td","r red")
+        
         clear_screen()
         print("#=========================================#")
         print("#               Full oversikt             #")
@@ -103,12 +114,13 @@ def vestland():
         print(f"# Maksimumsprisen i dag er {get_max} øre/kWh")
         print("#=========================================#")
         print("")
-        print("Trykk enter for å fortsette...")
+        print("     ~ Trykk enter for å fortsette ~")
         input()
         vestland()
     elif valg == "6":
         tomorrow_avg = get_price("span","em24 c")
         tomorrow_min = get_price("span","em24 c green")
+        loading()
         tomorrow_max = get_price("span","em24 c red")
         clear_screen()
         print("#===========================================#")
@@ -120,7 +132,7 @@ def vestland():
         print(f"# Maksimumsprisen imorgen er {tomorrow_max} øre/kWh")
         print("#===========================================#")
         print("")
-        print("Trykk enter for å fortsette...")
+        print("      ~ Trykk enter for å fortsette ~ ")
         input()
         vestland()
     elif valg == "0":
@@ -147,14 +159,16 @@ def menu_banner():
 def about():
     clear_screen()
     print("#=============================================================#")
-    print("# Strømpris v1.0 (Beta) ~ 2022 imSiddis                       #")
+    print(f"# Strømpris v{build_version} ~ 2022 imSiddis                       #")
     print("#=============================================================#")
     print("# Dette programmet er laget av imSiddis                       #")
     print("# Programmet er laget for å sjekke strømprisen i ditt område. #")
     print("# Data hentes fra: https://minspotpris.no/                    #")
     print("# Strømprisen vil variere fra hvor din IP address kommer fra. #")
     print("#=============================================================#")
-    print("~ Trykk enter for å fortsette... ~")
+    print("# My github: https://github.com/imsiddis/                     #")
+    print("#=============================================================#")
+    print("              ~ Trykk enter for å fortsette ~")
     input()
     electric_menu()
 
@@ -188,6 +202,18 @@ def clear_screen():
     else:
         os.system("clear")
 
+# Animated loading screen
+def loading():
+    for i in range(0, 3):
+        print("Laster inn...")
+        time.sleep(0.1)
+        clear_screen()
+        print("Laster inn..")
+        time.sleep(0.1)
+        clear_screen()
+        print("Laster inn.")
+        time.sleep(0.1)
+        clear_screen()
 
 def start():
     electric_menu()
