@@ -17,7 +17,7 @@ def get_price(postnummer):
     # Then we will parse the HTML using beautifulsoup.
     soup = bs4.BeautifulSoup(page.content, "html.parser")
     # Now we will find the price of electricity.
-    price = soup.find(attrs="sc-fea3cc73-0 gXnxqD")
+    price = soup.find("h1", "class=StyledHeading-sc-1rdh4aw-0 gUkQjO sc-93d72a4f-0 hJtcJS")
     # We will now return the price.
     return price
 
