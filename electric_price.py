@@ -39,56 +39,63 @@ def get_price(t1, t2):
 #===========#
 # Sørlandet #
 # ==========# 
-def sørlandet():
+def vestland():
     clear_screen()
-    print("#=========================#")
-    print("# Valgt område: Sørlandet #")
-    print("#=========================#")
-    print("# 1. Pris nå              #")
-    print("# 2. Snittpris i dag      #")
-    print("# 3. Minimumspris i dag   #")
-    print("# 4. Maksimumspris i dag  #")
-    print("# 5. Full oversikt        #")
-    print("# 0. Tilbake              #")
-    print("#=========================#")
+    print("#========================#")
+    print("# ~ Hva vil du sjekke? ~ #")
+    print("#========================#")
+    print("# 1. Pris nå             #")
+    print("# 2. Snittpris i dag     #")
+    print("# 3. Minimumspris i dag  #")
+    print("# 4. Maksimumspris i dag #")
+    print("# 5. Full oversikt       #")
+    print("# 6. Oversikt imorgen    #")
+    print("# 0. Tilbake             #")
+    print("#========================#")
     valg = input("Valg: ")
     if valg == "1":
         get_now = get_price("span","em24 i")
         print(f"Prisen nå er {get_now} øre/kWh")
         print("Trykk enter for å fortsette...")
         input()
-        sørlandet()
+        vestland()
     elif valg == "2":
         get_avg = get_price("span","em24")
         print(f"Snittprisen i dag er {get_avg} øre/kWh")
         print("Trykk enter for å fortsette...")
         input()
-        sørlandet()
+        vestland()
     elif valg == "3":
         get_min = get_price("span","em18")
         print(f"Minimumsprisen i dag er {get_min} øre/kWh")
         print("Trykk enter for å fortsette...")
         input()
-        sørlandet()
+        vestland()
     elif valg == "4":
         get_max = get_price("td","r red")
         print(f"Maksimumsprisen i dag er {get_max} øre/kWh")
         print("Trykk enter for å fortsette...")
         input()
-        sørlandet()
+        vestland()
     elif valg == "5":
-        clear_screen()
+        #===============================================#
         # Date should be formatted like this: DD/MM/YYYY
         date = datetime.datetime.now()
         date = date.strftime("%d/%m/%Y")
+        # Clock should be formatted like this: HH:MM:SS #
+        clock = datetime.datetime.now()
+        clock = clock.strftime("%H:%M:%S")
+        #===============================================#
         get_now = get_price("span","em24 i")
         get_avg = get_price("span","em24")
         get_min = get_price("span","em18")
         # get_max should look for the next span element with the class "em18" after the first one.
         get_max = get_price("td","r red")
+        clear_screen()
         print("#=========================================#")
         print("#               Full oversikt             #")
         print("#=========================================#")
+        print(f"# Tidspunkt: {clock}")
         print(f"# Dato: {date}")
         print(f"# Prisen nå er {get_now} øre/kWh")
         print(f"# Snittprisen i dag er {get_avg} øre/kWh")
@@ -98,14 +105,30 @@ def sørlandet():
         print("")
         print("Trykk enter for å fortsette...")
         input()
-        sørlandet()
-        
+        vestland()
+    elif valg == "6":
+        tomorrow_avg = get_price("span","em24 c")
+        tomorrow_min = get_price("span","em24 c green")
+        tomorrow_max = get_price("span","em24 c red")
+        clear_screen()
+        print("#===========================================#")
+        print("#                Full oversikt              #")
+        print("#===========================================#")
+        print("# For imorgen:                              #")
+        print(f"# Snittprisen imorgen er {tomorrow_avg} øre/kWh")
+        print(f"# Minimumsprisen imorgen er {tomorrow_min} øre/kWh")
+        print(f"# Maksimumsprisen imorgen er {tomorrow_max} øre/kWh")
+        print("#===========================================#")
+        print("")
+        print("Trykk enter for å fortsette...")
+        input()
+        vestland()
     elif valg == "0":
         electric_menu()
-        sørlandet()
+        vestland()
     else:
         print("Ugyldig valg!")
-        sørlandet()
+        vestland()
 
 
 #==============================#
@@ -124,7 +147,7 @@ def menu_banner():
 def about():
     clear_screen()
     print("#=============================================================#")
-    print("# Strømpris v1.0 (Beta) (c) 2021 imSiddis                     #")
+    print("# Strømpris v1.0 (Beta) ~ 2022 imSiddis                       #")
     print("#=============================================================#")
     print("# Dette programmet er laget av imSiddis                       #")
     print("# Programmet er laget for å sjekke strømprisen i ditt område. #")
@@ -140,7 +163,7 @@ def electric_menu():
     menu_choice = input("Velg et alternativ: ") # Get the user input
     if menu_choice == "1":
         print("Sørlandet")
-        sørlandet()
+        vestland()
     elif menu_choice == "2":
         about()
     elif menu_choice == "0":
