@@ -10,9 +10,9 @@ import sid_main
 import scapy.all as scapy
 import socket
 
-#=======================#
-# Prints version number #
-#=======================#
+#========================#
+# Build Version Variable #
+#========================#
 build_num = 0.1
 
 # This function will request an IP address from the user.

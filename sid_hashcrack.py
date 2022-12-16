@@ -10,9 +10,16 @@ import hashlib
 import sys
 import sid_main
 import os
+
+#========================#
+# Build Version Variable #
+#========================#
 build_num = "0.1"
 
-class Hash:
+#=============================#
+#       The Hash Class        #
+#=============================#
+class Hash: 
     def __init__(self, hash):
         self.hash = hash
     def crack(self):
