@@ -188,14 +188,20 @@ def electric_menu():
         electric_menu()
 
 def confirm_exit():
-    clear_screen()
-    print("Er du sikker på at du vil avslutte? (Y/n)")
-    confirm = input("Valg: ")
-    if confirm == "Y" or confirm == "y" or confirm == "":
-        print("Avslutter...")
-        exit()
-    elif confirm == "N" or confirm == "n":
-        electric_menu()
+    try:
+        clear_screen()
+        print("Er du sikker på at du vil avslutte? (Y/n)")
+        confirm = input("Valg: ")
+        if confirm == "Y" or confirm == "y" or confirm == "":
+            print("Avslutter...")
+            exit()
+        elif confirm == "N" or confirm == "n":
+            electric_menu()
+        else:
+            print("Ugyldig valg!")
+            confirm_exit()
+    except:
+        quit()
 
 def clear_screen():
     if os.name == "nt":
