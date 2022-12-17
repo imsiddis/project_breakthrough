@@ -116,7 +116,7 @@ def vestland():
             print("#===========================================#")
             print("#                Full oversikt              #")
             print("#===========================================#")
-            print(f"# For imorgen [{date}]:                              #")
+            print(f"# For imorgen [{date}]:                 #")
             print("#===========================================#")
             print(f"# Snittprisen imorgen er {tomorrow_avg} øre/kWh")
             print(f"# Minimumsprisen imorgen er {tomorrow_min} øre/kWh")
