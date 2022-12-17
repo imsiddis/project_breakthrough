@@ -6,7 +6,7 @@
 import requests
 import bs4
 import os
-import datetime
+from datetime import datetime
 import time
 
 #=======================#
@@ -30,10 +30,10 @@ def get_price(t1, t2):
 ##############################################
 #===============================================#
 # Date should be formatted like this: DD/MM/YYYY
-date = datetime.datetime.now()
+date = datetime.now()
 date = date.strftime("%d/%m/%Y")
 # Clock should be formatted like this: HH:MM:SS #
-clock = datetime.datetime.now()
+clock = datetime.now()
 clock = clock.strftime("%H:%M:%S")
 #===============================================#
 #============#
@@ -107,7 +107,11 @@ def vestland():
         input()
         vestland()
     elif valg == "6":
-        try:
+        
+        now = datetime.now().time() # time object
+        hour = str(now)
+
+        if int(hour[:2]) not in range(0, 14):
             tomorrow_avg = get_price("span","em24 c")
             tomorrow_min = get_price("span","em24 c green")
             loading()
@@ -126,7 +130,7 @@ def vestland():
             print("      ~ Trykk enter for å fortsette ~ ")
             input()
             vestland()
-        except:
+        else:
             clear_screen()
             print("#==================================================================#")
             print("# Det er ingen oversikt for imorgen på dette tidspunktet.          #")
@@ -194,7 +198,12 @@ def confirm_exit():
         confirm = input("Valg: ")
         if confirm == "Y" or confirm == "y" or confirm == "":
             print("Avslutter...")
-            exit()
+
+            try:
+                quit()
+            except ValueError:
+                quit()
+            
         elif confirm == "N" or confirm == "n":
             electric_menu()
         else:
