@@ -40,6 +40,14 @@ clock = clock.strftime("%H:%M:%S")
 # Vestlandet # 
 #============# 
 def vestland():
+    #===============================================#
+    # Date should be formatted like this: DD/MM/YYYY
+    date = datetime.datetime.now()
+    date = date.strftime("%d/%m/%Y")
+    # Clock should be formatted like this: HH:MM:SS #
+    clock = datetime.datetime.now()
+    clock = clock.strftime("%H:%M:%S")
+    #===============================================#
     clear_screen()
     print("#========================#")
     print("# ~ Hva vil du sjekke? ~ #")
@@ -137,7 +145,7 @@ def vestland():
             input()
             vestland()
     elif valg == "0":
-        electric_menu()
+        start()
         vestland()
     else:
         print("Ugyldig valg!")
@@ -171,9 +179,9 @@ def about():
     print("#=============================================================#")
     print("              ~ Trykk enter for å fortsette ~")
     input()
-    electric_menu()
+    start()
 
-def electric_menu():
+def start():
     menu_banner() # Print the menu banner
     menu_choice = input("Velg et alternativ: ") # Get the user input
     if menu_choice == "1":
@@ -185,7 +193,7 @@ def electric_menu():
         confirm_exit()
     else:
         print("Ugyldig valg!")
-        electric_menu()
+        start()
 
 def confirm_exit():
     try:
@@ -194,9 +202,12 @@ def confirm_exit():
         confirm = input("Valg: ")
         if confirm == "Y" or confirm == "y" or confirm == "":
             print("Avslutter...")
-            exit()
+            try:
+                exit()
+            except TypeError:
+                quit()
         elif confirm == "N" or confirm == "n":
-            electric_menu()
+            start()
         else:
             print("Ugyldig valg!")
             confirm_exit()
@@ -221,8 +232,4 @@ def loading():
         print("Laster inn.")
         time.sleep(0.1)
         clear_screen()
-
-def start():
-    electric_menu()
-
 start()
